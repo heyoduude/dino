@@ -1,0 +1,147 @@
+[gd_scene format=3 uid="uid://da0u8n3qo0h34"]
+
+[ext_resource type="Script" uid="uid://bt6bydf6xvm0" path="res://din.gd" id="1_fc0e3"]
+[ext_resource type="Script" uid="uid://dsshieo23qn3p" path="res://game.gd" id="1_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://borb2pnu0lfpn" path="res://res/background.png" id="4_hve3p"]
+[ext_resource type="FontFile" uid="uid://dqw2jrokg0s86" path="res://res/fonts/Xolonium-Regular.ttf" id="4_vef74"]
+[ext_resource type="Texture2D" uid="uid://cbursewdbuaio" path="res://res/man/gameover.png" id="6_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://xyehw2wgsrbm" path="res://cactus.tscn" id="6_ryrav"]
+[ext_resource type="Texture2D" uid="uid://6xpm2xy2vb6e" path="res://res/man/run1.png" id="7_iotsf"]
+[ext_resource type="Texture2D" uid="uid://dcuusqb464qh8" path="res://res/man/run2.png" id="8_lc2xo"]
+[ext_resource type="Texture2D" uid="uid://f6jxsp2cdub" path="res://res/man/standing.png" id="9_215e1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ywu7v"]
+font = ExtResource("4_vef74")
+font_size = 32
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j5wjh"]
+font = ExtResource("4_vef74")
+font_size = 32
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_niac1"]
+size = Vector2(121.25, 43)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s7llp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_mfdv2")
+}],
+"loop": 1,
+"name": &"gameover",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_iotsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_lc2xo")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_215e1")
+}],
+"loop": 1,
+"name": &"standing",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7jktm"]
+size = Vector2(11, 48)
+
+[node name="game" type="Node" unique_id=1281369857]
+process_mode = 3
+script = ExtResource("1_mfdv2")
+cactus_scene = ExtResource("6_ryrav")
+
+[node name="display" type="Node" parent="." unique_id=883475552]
+
+[node name="ColorRect2" type="ColorRect" parent="display" unique_id=867077137]
+anchors_preset = -1
+anchor_top = -0.25
+anchor_right = 0.634375
+anchor_bottom = 0.46875
+offset_left = -72.0
+offset_top = 117.0
+offset_right = 332.50003
+offset_bottom = 274.5
+metadata/_edit_use_anchors_ = true
+
+[node name="ScoreLabel" type="Label" parent="display" unique_id=1798197823]
+offset_left = 508.0
+offset_top = 15.0
+offset_right = 622.0
+offset_bottom = 54.0
+text = "00000"
+label_settings = SubResource("LabelSettings_ywu7v")
+
+[node name="HighScoreLabel" type="Label" parent="display" unique_id=452493692]
+offset_left = 656.0
+offset_top = 15.0
+offset_right = 770.0
+offset_bottom = 54.0
+text = "00000"
+label_settings = SubResource("LabelSettings_ywu7v")
+
+[node name="TextLabel" type="Label" parent="display" unique_id=1078145727]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.00002
+offset_top = -97.0
+offset_right = 175.0
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "press space to restart"
+label_settings = SubResource("LabelSettings_j5wjh")
+
+[node name="Sprite2D" type="Sprite2D" parent="display" unique_id=2134209444]
+position = Vector2(460.5, 238)
+scale = Vector2(4.3398438, 4.7812505)
+texture = ExtResource("4_hve3p")
+
+[node name="floor" type="StaticBody2D" parent="." unique_id=1580204370]
+position = Vector2(119.999985, 205)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="floor" unique_id=354029642]
+position = Vector2(12.000008, 112.5)
+shape = SubResource("RectangleShape2D_niac1")
+
+[node name="dino" type="CharacterBody2D" parent="." unique_id=1717513541]
+process_mode = 1
+position = Vector2(-2, 56)
+script = ExtResource("1_fc0e3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="dino" unique_id=960854105]
+position = Vector2(212.00002, 275)
+scale = Vector2(1.8, 1.8)
+sprite_frames = SubResource("SpriteFrames_s7llp")
+animation = &"run"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dino" unique_id=10829930]
+position = Vector2(73, 283)
+scale = Vector2(1.9999999, 1.9999999)
+shape = SubResource("RectangleShape2D_7jktm")
+
+[node name="MobTimer" type="Timer" parent="." unique_id=551438782]
+autostart = true
+
+[node name="ScoreTimer" type="Timer" parent="." unique_id=1333163317]
+wait_time = 0.1
+autostart = true
+
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

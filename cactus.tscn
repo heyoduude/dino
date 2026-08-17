@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://xyehw2wgsrbm"]
+
+[ext_resource type="Script" uid="uid://dlmjo4l2cf8f" path="res://cactus.gd" id="1_2a4ad"]
+[ext_resource type="Texture2D" uid="uid://cgooyd1seul0x" path="res://res/notes/note1.png" id="2_2a4ad"]
+[ext_resource type="Texture2D" uid="uid://b1j0omka21pim" path="res://res/notes/note2.png" id="3_u6gee"]
+[ext_resource type="Texture2D" uid="uid://crm2v1f1totxg" path="res://res/notes/note3.png" id="4_lakah"]
+[ext_resource type="Texture2D" uid="uid://cqy5kh1s36kvh" path="res://res/notes/note4.png" id="5_28ui1"]
+[ext_resource type="Texture2D" uid="uid://cvv82qxnmjc33" path="res://res/notes/note5.png" id="6_up74a"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ia3t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2a4ad")
+}],
+"loop": 1,
+"name": &"1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_u6gee")
+}],
+"loop": 1,
+"name": &"2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_lakah")
+}],
+"loop": 1,
+"name": &"3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_28ui1")
+}],
+"loop": 1,
+"name": &"4",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_up74a")
+}],
+"loop": 1,
+"name": &"5",
+"speed": 5.0
+}]
+
+[node name="cactus" type="Area2D" unique_id=1332184202 groups=["cactus"]]
+position = Vector2(7, 4)
+script = ExtResource("1_2a4ad")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=37740417]
+process_mode = 1
+position = Vector2(544.00006, -104.00001)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_2ia3t")
+animation = &"5"
+
+[node name="1" type="CollisionPolygon2D" parent="." unique_id=1437810892]
+polygon = PackedVector2Array(-51, 6, -21, 6, -21, -76, 38, -49, 39, 46, 5, 46, 4, 26, -51, 26)
+
+[node name="2" type="CollisionPolygon2D" parent="." unique_id=647580306]
+polygon = PackedVector2Array(-20, 1, -51, 1, -51, 26, -16, 26, -16, -34, 19, -34, 9, -59, -11, -74, -21, -74)
+
+[node name="3" type="CollisionPolygon2D" parent="." unique_id=2030105459]
+polygon = PackedVector2Array(-21, 1, -51, 1, -51, 26, -16, 26, -16, 6, 39, 6, 39, -101, -21, -73)
+
+[node name="4" type="CollisionPolygon2D" parent="." unique_id=1863845158]
+polygon = PackedVector2Array(-56, -44, -6, -44, -6, -24, -56, -24)
+
+[node name="5" type="CollisionPolygon2D" parent="." unique_id=1076212047]
+polygon = PackedVector2Array(-41, 26, -56, 15, -61, -31, -41, -49, -45, -86, -20, -54)
